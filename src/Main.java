@@ -20,12 +20,90 @@ public class Main {
             System.out.println("6. Dijkstra Shortest Path");
             System.out.println("7. Prim Minimum Spanning Tree");
             System.out.println("8. Exit");
-            System.out.println("Enter your choice: ");
+            System.out.println("\nEnter your choice: ");
 
             choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
+
+                case 1:
+
+                    System.out.print("Enter vertex name: ");
+                    String vertex = scanner.nextLine();
+
+                    graph.addVertex(vertex);
+
+                    System.out.println("Vertex added successfully.");
+
+                    break;
+
+                case 2:
+
+                    System.out.print("Source vertex: ");
+                    String source = scanner.nextLine();
+
+                    System.out.print("Destination vertex: ");
+                    String destination = scanner.nextLine();
+
+                    System.out.print("Weight: ");
+                    int weight = scanner.nextInt();
+
+                    graph.addEdge(source, destination, weight);
+
+                    break;
+
+                case 3:
+                    
+                    graph.displayGraph();
+
+                    break;
+
+                case 4:
+
+                    System.out.print("Start vertex: ");
+                    String bfsStart = scanner.nextLine();
+
+                    graph.bfs(bfsStart);
+
+                    break;
+
+                case 5:
+
+                    System.out.print("Start vertex: ");
+                    String dfsStart = scanner.nextLine();
+
+                    graph.dfs(dfsStart);
+
+                    break;
+
+                case 6:
+
+                    System.out.print("Source vertex: ");
+                    String dijkstraStart = scanner.nextLine();
+
+                    graph.dijkstra(dijkstraStart);
+
+                    break;
+
+                case 7:
+
+                    System.out.print("Start vertex: ");
+                    String primStart = scanner.nextLine();
+
+                    graph.prim(primStart);
+
+                    break;
+
+                case 8:
+
+                    System.out.println("Program termianted.");
+
+                    break;
+
+                default:
+
+                    System.out.println("Invalid choice.");
 
             }
             
