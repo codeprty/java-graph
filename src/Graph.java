@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Graph {
 
@@ -98,6 +99,49 @@ public class Graph {
 
                     neighbour.visited = true;
                     queue.offer(neighbour);
+
+                }
+
+            }
+
+        }
+
+        System.out.println();
+
+    }
+
+    public void dfs(String startName) {
+
+        Vertex start = findVertex(startName);
+
+        if (start == null) {
+            System.out.println("Vertex not found.");
+            return;
+        }
+
+        resetVisited();
+
+        Stack<Vertex> stack = new Stack<>();
+
+        stack.push(start);
+
+        while (!stack.isEmpty()) {
+
+            Vertex current = stack.pop();
+
+            if (!current.visited) {
+
+                current.visited = true;
+
+                System.out.print(current.name + " ");
+
+                for (int i = current.edges.size() - 1; i >= 0; i--) {
+
+                    Vertex neighbour = current.edges.get(i).destination;
+
+                    if(!neighbour.visited) {
+                        stack.push(neighbour);
+                    }
 
                 }
 
