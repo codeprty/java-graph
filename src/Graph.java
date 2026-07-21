@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Graph {
 
@@ -56,6 +58,55 @@ public class Graph {
 
         System.out.println();
 
+    }
+
+    private void resetVisited() {
+
+        for (Vertex vertex : vertices) {
+            vertex.visited = false;
+        }
+
+    }
+
+    public void bfs(String startName) {
+
+        Vertex start = findVertex(startName);
+
+        if (start == null) {
+            System.out.println("Vertex not found.");
+            return;
+        }
+
+        resetVisited();
+
+        Queue<Vertex> queue = new LinkedList<>();
+
+        start.visited = true;
+        queue.offer(start);
+
+        while(!queue.isEmpty()) {
+
+            Vertex current = queue.poll();
+
+            System.out.print(current.name + " ");
+
+            for (Edge edge : current.edges) {
+
+                Vertex neighbour = edge.destination;
+
+                if (!neighbour.visited) {
+
+                    neighbour.visited = true;
+                    queue.offer(neighbour);
+
+                }
+
+            }
+
+        }
+
+        System.out.println();
+        
     }
 
 }
