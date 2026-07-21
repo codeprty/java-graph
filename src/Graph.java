@@ -41,8 +41,8 @@ public class Graph {
             return;
         }
 
-        source.edges.add(new Edge(destination, weight));
-        destination.edges.add(new Edge(source,weight));
+        source.edges.add(new Edge(source, destination, weight));
+        destination.edges.add(new Edge(destination, source,weight));
 
     }
 
@@ -234,6 +234,71 @@ public class Graph {
 
         System.out.print(vertex.name + " ");
         
+    }
+
+    public void prim(String startName) {
+
+        Vertex start = findVertex(startName);
+
+        if (start == null) {
+            System.out.println("Vertex not found.");
+            return;
+        }
+
+        resetVisited();
+
+        PriorityQueue<Edge> queue =
+            new PriorityQueue<>(Comparator.comparingInt(e -> e.weight));
+
+        start.visited = true;
+
+        for (Edge edge : start.edges) {
+
+            queue.offer(new Edge(
+                    start,
+                    edge.destination,
+                    edge.weight));
+
+        }
+
+        int totalCost = 0;
+
+        System.out.println("Minimum Spanning Tree:");
+
+        while (!queue.isEmpty()) {
+
+            Edge edge = queue.poll();
+
+            if (edge.destination.visited) {
+                continue;
+            }
+
+            edge.destination.visited = true;
+
+            System.out.println(edge.source.name
+                    + " - "
+                    + edge.destination.name
+                    + " : "
+                    + edge.weight);
+
+            totalCost += edge.weight;
+
+            for (Edge next : edge.destination.edges) {
+
+                if (!next.destination.visited) {
+                    queue.offer(new Edge (
+                            edge.destination,
+                            next.destination,
+                            next.weight));
+
+                }
+
+            }
+
+        }
+
+        System.out.println("Total Cost = " + totalCost);
+
     }
 
 }
