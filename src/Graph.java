@@ -160,6 +160,7 @@ public class Graph {
         for (Vertex vertex : vertices) {
             vertex.visited = false;
             vertex.distance = Integer.MAX_VALUE;
+            vertex.previous = null;
         }
 
     }
@@ -200,7 +201,7 @@ public class Graph {
                 if (newDistance < neighbour.distance) {
 
                     neighbour.distance = newDistance;
-
+                    neighbour.previous = current;
                     queue.offer(neighbour);
 
                 }
@@ -214,7 +215,7 @@ public class Graph {
         for (Vertex vertex : vertices) {
 
             System.out.println(vertex.name + " = " + vertex.distance);
-            
+
         }
 
     }
