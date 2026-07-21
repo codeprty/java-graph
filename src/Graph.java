@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.PriorityQueue;
+import java.util.Comparator;
 
 public class Graph {
 
@@ -150,7 +152,71 @@ public class Graph {
         }
 
         System.out.println();
-        
+
+    }
+
+    private void resetGraph() {
+
+        for (Vertex vertex : vertices) {
+            vertex.visited = false;
+            vertex.distance = Integer.MAX_VALUE;
+        }
+
+    }
+
+    public void dijkstra(String startName) {
+
+        Vertex start = findVertex(startName);
+
+        if (start == null) {
+            System.out.println("Vertex not found.");
+            return;
+        }
+
+        resetGraph();
+
+        PriorityQueue<Vertex> queue = 
+                new PriorityQueue<>(Comparator.comparingInt(v -> v.distance));
+
+        start.distance = 0;
+        queue.offer(start);
+
+        while (!queue.isEmpty()) {
+
+            Vertex current = queue.poll();
+
+            if (current.visited) {
+                continue;
+            }
+
+            current.visited = true;
+
+            for (Edge edge : current.edges) {
+
+                Vertex neighbour = edge.destination;
+
+                int newDistance = current.distance + edge.weight;
+
+                if (newDistance < neighbour.distance) {
+
+                    neighbour.distance = newDistance;
+
+                    queue.offer(neighbour);
+
+                }
+
+            }
+
+        }
+
+        System.out.println("Shortest distances from " + start.name + ":");
+
+        for (Vertex vertex : vertices) {
+
+            System.out.println(vertex.name + " = " + vertex.distance);
+            
+        }
+
     }
 
 }
