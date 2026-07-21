@@ -210,14 +210,30 @@ public class Graph {
 
         }
 
-        System.out.println("Shortest distances from " + start.name + ":");
+        System.out.println("Shortest paths from " + start.name + ":");
 
         for (Vertex vertex : vertices) {
 
-            System.out.println(vertex.name + " = " + vertex.distance);
+            System.out.println(vertex.name + " : ");
+
+            printPath(vertex);
+
+            System.out.println("(Cost = " + vertex.distance + ")");
 
         }
 
+    }
+
+    private void printPath(Vertex vertex) {
+
+        if (vertex == null) {
+            return;
+        }
+
+        printPath(vertex.previous);
+
+        System.out.print(vertex.name + " ");
+        
     }
 
 }
