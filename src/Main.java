@@ -20,7 +20,7 @@ public class Main {
             System.out.println("6. Dijkstra Shortest Path");
             System.out.println("7. Prim Minimum Spanning Tree");
             System.out.println("8. Exit");
-            System.out.println("\nEnter your choice: ");
+            System.out.print("\nEnter your choice: ");
 
             choice = scanner.nextInt();
             scanner.nextLine();
@@ -48,8 +48,11 @@ public class Main {
 
                     System.out.print("Weight: ");
                     int weight = scanner.nextInt();
+                    scanner.nextLine();
 
                     graph.addEdge(source, destination, weight);
+
+                    System.out.println("Edge added successfully.");
 
                     break;
 
@@ -64,6 +67,7 @@ public class Main {
                     System.out.print("Start vertex: ");
                     String bfsStart = scanner.nextLine();
 
+                    System.out.print("BFS Traversal: ");
                     graph.bfs(bfsStart);
 
                     break;
@@ -97,7 +101,7 @@ public class Main {
 
                 case 8:
 
-                    System.out.println("Program termianted.");
+                    System.out.println("Program terminated.");
 
                     break;
 

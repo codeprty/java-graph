@@ -1,9 +1,9 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
-import java.util.PriorityQueue;
-import java.util.Comparator;
 
 public class Graph {
 
@@ -42,7 +42,13 @@ public class Graph {
         }
 
         source.edges.add(new Edge(source, destination, weight));
-        destination.edges.add(new Edge(destination, source,weight));
+        destination.edges.add(new Edge(destination, source, weight));
+
+        /*System.out.println("Edge added: "
+        + source.name
+        + " -> "
+        + destination.name
+        + " (" + weight + ")");*/
 
     }
 
@@ -53,13 +59,12 @@ public class Graph {
             System.out.print(vertex.name + " -> ");
 
             for (Edge edge : vertex.edges) {
-                System.out.print(edge.destination.name
-                        + "(" + edge.weight + ") ");
+                System.out.print(edge.destination.name + "(" + edge.weight + ") ");
             }
 
-        }
+            System.out.println();
 
-        System.out.println();
+        }
 
     }
 
