@@ -50,9 +50,9 @@ public class Main {
                     int weight = scanner.nextInt();
                     scanner.nextLine();
 
-                    graph.addEdge(source, destination, weight);
-
-                    System.out.println("Edge added successfully.");
+                    if (graph.addEdge(source, destination, weight)) {
+                        System.out.println("Edge added successfully.");
+                    }
 
                     break;
 
@@ -77,6 +77,7 @@ public class Main {
                     System.out.print("Start vertex: ");
                     String dfsStart = scanner.nextLine();
 
+                    System.out.print("DFS Traversal: ");
                     graph.dfs(dfsStart);
 
                     break;
