@@ -14,7 +14,14 @@ public class Graph {
     }
 
     public void addVertex(String name) {
+
+        if (findVertex(name) != null) {
+            System.out.println("Vertex already exists.");
+            return;
+        }
+
         vertices.add(new Vertex(name));
+
     }
 
     private Vertex findVertex(String name) {
@@ -31,24 +38,39 @@ public class Graph {
 
     }
 
-    public void addEdge(String sourceName, String destinationName, int weight) {
+    private boolean edgeExists(Vertex source, Vertex destination) {
+
+        for (Edge edge: source.edges) {
+
+            if (edge.destination == destination) {
+                return true;
+            }
+
+        }
+
+        return false;
+
+    }
+
+    public boolean addEdge(String sourceName, String destinationName, int weight) {
 
         Vertex source = findVertex(sourceName);
         Vertex destination = findVertex(destinationName);
 
         if (source == null || destination == null) {
             System.out.println("Vertex not found.");
-            return;
+            return false;
+        }
+
+        if (edgeExists(source, destination)) {
+            System.out.println("Edge already exists.");
+            return false;
         }
 
         source.edges.add(new Edge(source, destination, weight));
         destination.edges.add(new Edge(destination, source, weight));
 
-        /*System.out.println("Edge added: "
-        + source.name
-        + " -> "
-        + destination.name
-        + " (" + weight + ")");*/
+        return true;
 
     }
 
@@ -219,7 +241,7 @@ public class Graph {
 
         for (Vertex vertex : vertices) {
 
-            System.out.println(vertex.name + " : ");
+            System.out.print(vertex.name + " : ");
 
             printPath(vertex);
 
