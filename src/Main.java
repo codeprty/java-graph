@@ -108,7 +108,7 @@ public class Main {
 
                 default:
 
-                    System.out.println("Invalid choice.");
+                    System.out.println("Invalid choice. Please enter again.");
 
             }
             
