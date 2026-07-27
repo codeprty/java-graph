@@ -16,15 +16,16 @@ public class Graph {
     }
 
     // Adds a new vertex to the graph
-    public void addVertex(String name) {
+    public boolean addVertex(String name) {
 
         // Prevent duplicate vertices
         if (findVertex(name) != null) {
             System.out.println("Vertex already exists.");
-            return;
+            return false;
         }
 
         vertices.add(new Vertex(name));
+        return true;
 
     }
 

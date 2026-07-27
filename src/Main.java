@@ -35,9 +35,9 @@ public class Main {
                     System.out.print("Enter vertex name: ");
                     String vertex = scanner.nextLine();
 
-                    graph.addVertex(vertex);
-
-                    System.out.println("Vertex added successfully.");
+                    if (graph.addVertex(vertex)) {
+                        System.out.println("Vertex added successfully.");
+                    }
 
                     break;
 
